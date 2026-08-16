@@ -1,0 +1,43 @@
+clone_repository:
+  description: >
+    Clone the GitHub repository provided by the user into the sandbox directory.
+    Use the repository cloning tool with the provided URL: {input_url}. Make sure the repository
+    is successfully cloned and available in the sandbox for the analyzer.
+  expected_output: >
+    A confirmation that the repository was successfully cloned, including the
+    path to the cloned repository.
+  agent: cloner
+
+analyze_repository:
+  description: >
+    Thoroughly inspect the cloned repository and its relevant files. Understand
+    the project's purpose, structure, architecture, technologies, dependencies,
+    and how the main components interact. Identify bugs, technical debt,
+    architectural weaknesses, missing functionality, and opportunities for new
+    features. Based only on the actual codebase, propose potential improvements
+    or new features that could be implemented as pull requests.
+  expected_output: >
+    A detailed list of actionable improvement or feature proposals. For each
+    proposal, explain what should be changed, why it is valuable, and which
+    parts of the codebase would likely be affected.
+  agent: analyzer
+  context:
+    - clone_repository
+
+create_report:
+  description: >
+    Review the analyzer's findings and select the 3 to 5 most valuable
+    improvement or feature proposals. Rank them by priority based on impact,
+    usefulness, and implementation effort. For each recommendation, provide
+    its priority ranking, title, description, expected impact, difficulty
+    level, and estimated implementation time. Present the results as a clear,
+    concise report that a developer can use to decide which pull request to
+    implement next.
+  expected_output: >
+    A polished PR recommendation report containing between 3 and 5 ranked
+    recommendations, each with its priority, description, impact, difficulty
+    level, and estimated implementation time.
+  agent: reporter
+  context:
+      - analyze_repository
+      - clone_repository
