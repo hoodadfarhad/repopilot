@@ -2033,12 +2033,14 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "crewai", extra = ["tools"] },
+    { name = "gradio" },
     { name = "pydantic" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "crewai", extras = ["tools"], specifier = "==1.14.4" },
+    { name = "gradio", specifier = ">=6.24.0" },
     { name = "pydantic", specifier = ">=2.12.5" },
 ]
 

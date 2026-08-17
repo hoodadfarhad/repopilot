@@ -26,7 +26,7 @@ analyze_repository:
 
 create_report:
   description: >
-    Review the analyzer's findings and select the 3 to 5 most valuable
+    Review the analyzer's findings and select the 3 most valuable
     improvement or feature proposals. Rank them by priority based on impact,
     usefulness, and implementation effort. For each recommendation, provide
     its priority ranking, title, description, expected impact, difficulty
@@ -34,9 +34,11 @@ create_report:
     concise report that a developer can use to decide which pull request to
     implement next.
   expected_output: >
-    A polished PR recommendation report containing between 3 and 5 ranked
-    recommendations, each with its priority, description, impact, difficulty
-    level, and estimated implementation time.
+    A polished Markdown report containing 3 ranked recommendations.
+    Each recommendation must include its priority, title, description, expected
+    impact, difficulty level, and estimated implementation time. Use clear
+    headings, bullet points, and formatting so the report can be displayed
+    directly in the application's user interface.
   agent: reporter
   context:
       - analyze_repository
